@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Skin disease identification using image analysis</title>
+</head>
+<body>
+<h1 style="color:red;font-size:40px;">Skin Disease Identification Using Image Analysis</h1>
+<p style="color:blue;font-size:22px;">This proposes a skin disease detection method
+based on Image processsing</p>
+<p style="color:blue;font-size:22px;">The patient provides
+an image of the infected area of the skin as an
+input to the prototype</p>
+<p style="color:blue;font-size:22px;">Image processing techniques
+are performed on this image and the detected disease
+    is displayed at the output</p>
+select">
+
+<script type='text/javascript'>
+
+function main()
+{
+    var inputFileToLoad = document.createElement("input");
+    inputFileToLoad.type = "file";
+    inputFileToLoad.id = "inputFileToLoad";
+    document.body.appendChild(inputFileToLoad);
+
+    var buttonLoadFile = document.createElement("button");
+    buttonLoadFile.onclick = loadImageFileAsURL;
+    buttonLoadFile.textContent = "Load Selected File";
+    document.body.appendChild(buttonLoadFile);
+}
+
+function loadImageFileAsURL()
+{
+    var filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length > 0)
+    {
+        var fileToLoad = filesSelected[0];
+
+        if (fileToLoad.type.match("image.*"))
+        {
+            var fileReader = new FileReader();
+            fileReader.onload = function(fileLoadedEvent)
+            {
+                var imageLoaded = document.createElement("img");
+                imageLoaded.src = fileLoadedEvent.target.result;
+                document.body.appendChild(imageLoaded);
+            };
+            fileReader.readAsDataURL(fileToLoad);
+         }
+    }
+}
+main();
+
+</script>
+<h2>prediction area</h2>
+
+<form action="/action_page.php">
+  <textarea name="message" rows="5" cols="10">This is Basal cell carcinoma.</textarea>
+  <br><br>
+</form>
+
+</body>
+</html>
